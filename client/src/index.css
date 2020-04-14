@@ -1,0 +1,18 @@
+*{
+box-sizing: border-box;
+margin:0;
+padding:0;
+}
+
+textarea{
+  resize: none;
+  font-family: 'Segoe UI', 'Roboto';
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', 'Roboto';
+  background:#F1E8E6 ;
+}
