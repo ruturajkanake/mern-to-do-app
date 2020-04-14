@@ -1,0 +1,103 @@
+body{
+  background-image: url('./background-circles.png');
+  background-size: 108%;
+  background-position-x: -27px;
+  background-position-y: -37px;
+  background-repeat: no-repeat;
+}
+
+.Register {
+
+  background:#fff ;
+  width: 25rem;
+  margin: 3rem auto;
+  border-radius: 1rem;
+}
+
+.Register h4{
+  text-align: center;
+  padding: 2rem 3.5rem 1rem 3.5rem;
+  border-bottom: 1px solid #ccc;
+  opacity: 80%;
+}
+.Register h5{
+  text-align: left;
+  padding: 1.5rem 3.5rem 2rem 5rem;  
+}
+.Form-Main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1.5rem ;
+}
+/* Text Fields */
+.Form-Set label{
+  display: block;
+  margin-bottom: 0.7rem;
+}
+.Form-Set,
+.Small-Set {
+  width: 15rem;
+  margin:auto;
+  padding-bottom :0.7rem ;
+
+}
+.Form-Text input{
+  margin-left: 0.5rem;
+  border: none;
+  background-color: #F1E8E6;
+}
+.Form-Text{
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  background-color: #F1E8E6;
+  padding: 0.5rem;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+/* Small Text Fields */
+
+.Small-Set label{
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.Small-Set{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.Form-Small-Set{
+  width: 45%;
+}
+/* .Form-Small-Text{
+  width: 75%;
+} */
+
+.Form-Small-Text input{
+  margin-left: 0.75rem;
+  border: none;
+  background-color: #F1E8E6;
+  width: 90px;
+}
+.Form-Small-Text{
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  background-color: #F1E8E6;
+  padding: 0.5rem;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.Register-Button{
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  background-color: #F77871;
+  padding: 0.5rem;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  align-self: flex-end;
+  margin: 1rem 5rem 1rem 0;
+  width: 90px;
+  display: flex;
+  justify-content: space-between; 
+}

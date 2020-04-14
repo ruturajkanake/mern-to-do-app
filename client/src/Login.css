@@ -1,0 +1,62 @@
+.Login {
+  background:#fff ;
+  width: 25rem;
+  margin: 5rem auto;
+  border-radius: 1rem;
+}
+
+.Login h4{
+  text-align: center;
+  padding: 2rem 3.5rem 1rem 3.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.Login h5{
+  text-align: center;
+  padding: 0.5rem 8rem 3.5rem 0rem;  
+}
+
+.Login-Main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3rem ;
+}
+/* Text Fields */
+.Login-Set label{
+  display: block;
+  margin-bottom: 1rem;
+}
+.Login-Set{
+  width: 16rem;
+  margin: 0 auto;
+  padding-bottom :1rem ;
+
+}
+.Login-Text input{
+  margin-left: 0.75rem;
+  border: none;
+  background-color: #F1E8E6;
+}
+.Login-Text{
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  background-color: #F1E8E6;
+  padding: 0.5rem;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+
+.Login-Button{
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  background-color: #F77871;
+  padding: 0.5rem;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  align-self: flex-end;
+  margin: 1rem 5rem 1rem 0;
+  width: 70px;
+  display: flex;
+  justify-content: space-between; 
+}
