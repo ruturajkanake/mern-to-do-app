@@ -38,6 +38,8 @@
   margin-left: 0.75rem;
   border: none;
   background-color: #F1E8E6;
+  width: 13rem;
+  font-size: 12px;
 }
 .Login-Text{
   border-radius: 5px;

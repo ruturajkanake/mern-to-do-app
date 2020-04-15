@@ -150,7 +150,7 @@
 .Add-Content input,
 .Add-Content textarea{
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   display: block;
   border-radius: 5px;
   border: none;
@@ -164,7 +164,7 @@
 .Add-Content textarea{
   font-family: Arial, Helvetica, sans-serif;
   width: 80%;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .Add-Button{
@@ -233,6 +233,7 @@
   padding: 0.5rem;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   width: 17rem;
+  font-size: 14px;
 }
 .form-main ::placeholder{
   font-size: 12px;
@@ -294,4 +295,63 @@
 }
 .text-area .col-2{
   display: inline-block;
+}
+.view-header hr{
+  opacity: 60%;
+}
+.modal-view {
+  background-color: #FFFFFF;
+  height: 26rem;
+  width: 26rem;
+  /* margin: 27rem; */
+  margin: auto;
+  margin-top: 5rem;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #FB5951;
+  border-width: 1px;
+  padding: 20px;
+  font-family: Helvetica;
+  padding-bottom: 1px;
+}
+.modal-view h3{
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.modal-view img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding: 1rem;
+  border-radius: 50%;
+  display: block;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+  position: relative;
+  overflow: hidden;
+}
+.middle{
+  transition: .5s ease;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  font-weight: bold;
+}
+.custom-file-upload:hover img {
+  opacity: 0.3;
+}
+
+.custom-file-upload:hover .middle {
+  opacity: 1;
 }

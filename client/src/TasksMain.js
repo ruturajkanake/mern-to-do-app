@@ -3,6 +3,7 @@ import './TasksMain.css'
 import axios from 'axios'
 import Modal from 'react-modal'
 import {Link} from "react-router-dom";
+import pic from "./icon.png"
 
 const navStyle = { 
   textDecoration: 'none', color:'black' 
@@ -33,11 +34,15 @@ class TasksMain extends Component {
     this.handleEdit=this.handleEdit.bind(this);
     this.deleteUser=this.deleteUser.bind(this);
     this.logout=this.logout.bind(this)
+    this.fileUpload=this.fileUpload.bind(this)
   }
 
   componentDidMount(){
 
     const token = localStorage.authToken
+    if(!token){
+      this.props.history.push('/')
+    }
 
     axios({
       url: '/users/me',
@@ -65,6 +70,24 @@ class TasksMain extends Component {
     }).catch((err)=>{
       console.log(err)
     })
+
+    axios({
+      url: '/users/avatar',
+      method: 'GET',
+      responseType: 'blob',
+      headers: {Authorization: `Bearer ${token}`}
+    }).then((res)=>{
+      const data = res.data
+      this.setState({
+        avatar: URL.createObjectURL(data)
+      });
+    }).catch((err)=>{
+      this.setState({
+        avatar: pic
+      });
+      console.log(err)
+    })
+
   }
 
   componentWillMount(){
@@ -93,7 +116,33 @@ class TasksMain extends Component {
     })
   }
 
-
+  fileUpload(e){
+    e.preventDefault()
+    const token = localStorage.authToken
+    const data1 = new FormData() 
+    data1.append('avatar', e.target.files[0])
+    
+    // setTimeout(() => {  
+      axios({
+        url: '/users/me/avatar',
+        method: 'POST',
+        data: data1,
+        responseType: 'blob',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': `multipart/form-data`
+      }
+      }).then((res)=>{
+        const newData = res.data
+        // console.log('res '+ res.data)
+        this.setState({
+          avatar: URL.createObjectURL(newData)
+        });
+      }).catch((err)=>{
+        console.log(err)
+      })
+    // }, 5000);
+  }
 
   handleSubmit(e){
     e.preventDefault();
@@ -231,10 +280,7 @@ class TasksMain extends Component {
   resetUserInputs(){
     this.setState({
       newTask: '',
-      newDesc: '',
-      name: '',
-      password: '',
-      age: ''
+      newDesc: ''
     })
   }
   render() {
@@ -244,7 +290,15 @@ class TasksMain extends Component {
           <ul>
           <Link to='/tasks' style={navStyle}>
             <li onClick={this.toggleModalView}>View Profile</li></Link>
-            <Modal isOpen={this.state.isActiveView} onRequestClose={this.toggleModalView} className='modal'>
+            <Modal isOpen={this.state.isActiveView} onRequestClose={this.toggleModalView} className='modal-view'>
+              <h3>Your Profile</h3>
+              <label for="file-upload" class="custom-file-upload">
+                <img src={this.state.avatar} alt = 'Profile Pic'></img>
+                <div className='middle'>
+                <div className="text">Upload an image</div>
+                </div>
+                <input id="file-upload" type="file" className="image-file" name="file" accept="image/*" onChange={(event)=> { this.fileUpload(event) }}/>
+              </label>
               <div className='view-header'><hr/></div>
               <div className='main-view'>
                 <div className="text-area">

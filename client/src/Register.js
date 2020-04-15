@@ -16,6 +16,12 @@ class Register extends Component {
     this.handleSubmit=this.handleSubmit.bind(this);
     this.resetUserInputs=this.resetUserInputs.bind(this);
   }
+
+  componentDidMount(){
+    if(localStorage.authToken){
+      this.props.history.push("/tasks");
+    }
+  }
   
   handleChange(e){
     this.setState({[e.target.name]: e.target.value});

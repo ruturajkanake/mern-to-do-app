@@ -125,7 +125,7 @@ router.get('/users/avatar',auth ,async (req, res) => {
         res.set('Content-Type', 'image/png')
         res.send(user.avatar)
     }catch(e) {
-        res.status(404).send()
+        res.status(404).send(e)
     }
 })
 

@@ -14,6 +14,12 @@ class Login extends Component {
     this.resetUserInputs=this.resetUserInputs.bind(this);
     this.handleSubmit=this.handleSubmit.bind(this);
   }
+
+  componentDidMount(){
+    if(localStorage.authToken){
+      this.props.history.push('/tasks');
+    }
+  }
   
   handleChange(e){
     this.setState({[e.target.name]: e.target.value});

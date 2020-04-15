@@ -47,6 +47,8 @@ body{
   margin-left: 0.5rem;
   border: none;
   background-color: #F1E8E6;
+  width: 12rem;
+  font-size: 13px;
 }
 .Form-Text{
   border-radius: 5px;
