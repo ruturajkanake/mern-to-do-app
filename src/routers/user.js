@@ -3,8 +3,17 @@ const User = require('../models/user')
 const auth = require('../middleware/auth')
 const multer = require('multer')
 const sharp = require('sharp')
-const { sendWelcomeEmail, sendExitEmail } = require('../emails/account')
+const { sendVerificationCode, sendWelcomeEmail, sendExitEmail } = require('../emails/account')
 const router = new express.Router()
+
+router.post('/userVerification', async(req, res) => {
+    try{
+        sendVerificationCode(req.body.email, req.body.name, req.body.code)
+        res.send('Verification code sent.')
+    } catch(e){
+        res.send(400).send(e)
+    }
+})
 
 router.post('/users', async (req, res) => {
     const user = new User(req.body)

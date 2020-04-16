@@ -36,8 +36,7 @@ body{
   display: block;
   margin-bottom: 0.7rem;
 }
-.Form-Set,
-.Small-Set {
+.Form-Set {
   width: 15rem;
   margin:auto;
   padding-bottom :0.7rem ;
@@ -58,37 +57,37 @@ body{
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
-/* Small Text Fields */
+.modal-verify{
+  background-color: #FFFFFF;
+  height: 15rem;
+  width: 29rem;
+  margin: auto;
+  margin-top: 8rem;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #FB5951;
+  border-width: 1px;
+  padding: 20px;
+  padding-bottom: 1px;
+}
+.modal-verify h4{
+  text-align: left;
+}
 
-.Small-Set label{
-  display: block;
-  margin-bottom: 0.25rem;
+.modal-verify p{
+  margin-top: 10px;
 }
-.Small-Set{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-.Form-Small-Set{
-  width: 45%;
-}
-/* .Form-Small-Text{
-  width: 75%;
-} */
-
-.Form-Small-Text input{
-  margin-left: 0.75rem;
-  border: none;
-  background-color: #F1E8E6;
-  width: 90px;
-}
-.Form-Small-Text{
-  border-radius: 5px;
-  border: 1px solid #aaa;
-  background-color: #F1E8E6;
+.modal-verify button{
+  width:7rem;
   padding: 0.5rem;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background-color: #F77871;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 5px;
+  border-width: 0px;
+  box-shadow: grey 0px 3px 6px, grey 0px 3px 6px;
+  margin-left: 15rem;
+  margin-top: 2rem;
 }
 
 .Register-Button{
@@ -103,3 +102,24 @@ body{
   display: flex;
   justify-content: space-between; 
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.modal-verify input[type=number] {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #FB5951;
+  padding: 10px;
+  font-size: large;
+  width: 10rem;
+  margin-left: 7rem;
+} 
