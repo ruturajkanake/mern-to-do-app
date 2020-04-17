@@ -40,6 +40,7 @@ class TasksMain extends Component {
   componentDidMount(){
 
     const token = localStorage.authToken
+    Modal.setAppElement('body')
     if(!token){
       this.props.history.push('/')
     }
@@ -54,6 +55,8 @@ class TasksMain extends Component {
         email: res.data.email,
         age: res.data.age
       })
+    }).catch((err)=>{
+      console.log("GET Users Error" + err)
     })
 
     axios({
@@ -68,7 +71,7 @@ class TasksMain extends Component {
         this.setState({ currTask: res.data[0] });        
       }
     }).catch((err)=>{
-      console.log(err)
+      console.log("Get tasks error"+err)
     })
 
     axios({
@@ -85,14 +88,14 @@ class TasksMain extends Component {
       this.setState({
         avatar: pic
       });
-      console.log(err)
+      console.log("Get avatar error"+err)
     })
 
   }
 
-  componentWillMount(){
-    Modal.setAppElement('body')
-  }
+  // componentWillMount(){
+    
+  // }
 
   handleChange(e){
     this.setState({[e.target.name]: e.target.value});
