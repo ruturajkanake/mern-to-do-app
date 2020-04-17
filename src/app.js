@@ -6,8 +6,8 @@ const taskRouter = require('./routers/task')
 const app = express()
 
 app.use(express.json())
-// app.use(userRouter)
-// app.use(taskRouter)
+app.use(userRouter)
+app.use(taskRouter)
 
 // Dont need to include for development 
 
@@ -21,8 +21,8 @@ if(process.env.NODE_ENV === 'production'){
     })
 }
 
-app.use('/',userRouter)
-app.use('/',taskRouter)
+// app.use('/',userRouter)
+// app.use('/',taskRouter)
 
 // end;
 
