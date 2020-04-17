@@ -6,8 +6,16 @@ const taskRouter = require('./routers/task')
 const app = express()
 
 app.use(express.json())
-app.use(userRouter)
-app.use(taskRouter)
+// app.use(userRouter)
+// app.use(taskRouter)
+
+// Dont need to include for development 
+
+app.use('/',userRouter)
+app.use('/',taskRouter)
+
+// end;
+
 
 // New changes
 const cookieParser = require('cookie-parser')

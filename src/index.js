@@ -1,10 +1,8 @@
 const app = require('./app')
-const port = process.env.PORT
+const port = process.env.PORT || 5000
+
+// Don't need to include this for development
 const path = require('path')
-
-const routes = require('./routers');
-
-app.use('/', routes);
 
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static( 'client/build' ));
@@ -13,6 +11,8 @@ if(process.env.NODE_ENV === 'production'){
         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); //relative path
     })
 }
+
+// end;
 
 app.listen(port, () => {
     console.log('Server is up on port ' + port)
