@@ -45,6 +45,7 @@ router.post('/googleProfile', async(req, res) =>{
                     const token = await user.generateAuthToken()
                     res.status(201).send({ user, token })
                 }else{
+                    await User.update({email: isEmail.email}, { $set: { name: body.name } })
                     const token = await isEmail.generateAuthToken()
                     res.status(201).send({ user: isEmail, token})
                 }
@@ -80,6 +81,7 @@ router.post('/facebookProfile', async(req, res) => {
                     const token = await user.generateAuthToken()
                     res.status(201).send({ user, token })
                 }else{
+                    await User.update({email: isEmail.email}, { $set: { name: body.name } })
                     const token = await isEmail.generateAuthToken()
                     res.status(201).send({ user: isEmail, token})
                 }
@@ -169,7 +171,7 @@ router.delete('/users/me', auth, async (req, res) => {
         sendExitEmail(req.user.email, req.user.name)
         res.send(req.user)
     } catch (e) {
-        res.status(500).send()
+        res.status(500).send(e)
     }
 })
 
