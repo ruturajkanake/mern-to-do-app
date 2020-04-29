@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom";
+import OtherLogin from "./thirdPartyLogin";
 import "./Login.css" ;
 import axios from 'axios'
 
@@ -91,6 +92,7 @@ class Login extends Component {
           </button>
         </form>
         <h5>New User? <Link to="/">Register</Link></h5>
+        <OtherLogin history={this.props.history}/>
       </div>
     )
   }

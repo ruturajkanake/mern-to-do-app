@@ -5,20 +5,100 @@ const multer = require('multer')
 const sharp = require('sharp')
 const { sendVerificationCode, sendWelcomeEmail, sendExitEmail } = require('../emails/account')
 const router = new express.Router()
+const request = require ('request')
 
 router.post('/userVerification', async(req, res) => {
     try{
+        const isEmail = await User.findOne({email: req.body.email})
+        if(isEmail){
+            throw "Email already exists."
+        }
         sendVerificationCode(req.body.email, req.body.name, req.body.code)
         res.send('Verification code sent.')
     } catch(e){
-        res.send(400).send(e)
+        res.status(400).send(e)
     }
 })
 
-router.post('/users', async (req, res) => {
-    const user = new User(req.body)
 
+router.post('/googleProfile', async(req, res) =>{
+    const url = 'https://www.googleapis.com/oauth2/v2/userinfo?access_token='+req.body.accessToken;
+    request({url, json: true}, async (error, { body }) => {
+        if (error) {
+            callback('Unable to connect to google services!', undefined)
+        } else if(body.error) {
+            res.send('Unable to find user with that token or that token is expired.')
+        } else {
+            const data = {
+                name: body.name,
+                email: body.email,
+                password: body.id
+            }
+
+            try {
+                const isEmail = await User.findOne({email: body.email})
+                if(!isEmail){   
+                    const user = new User(data)
+
+                    await user.save()
+                    sendWelcomeEmail(user.email, user.name)
+                    const token = await user.generateAuthToken()
+                    res.status(201).send({ user, token })
+                }else{
+                    const token = await isEmail.generateAuthToken()
+                    res.status(201).send({ user: isEmail, token})
+                }
+            } catch (e) {
+                res.status(400).send(e)
+            }
+            
+        }
+    })
+})
+
+router.post('/facebookProfile', async(req, res) => {
+    const url = 'https://graph.facebook.com/v3.3/me?fields=name,picture,email&access_token='+req.body.accessToken;
+    request({url, json: true}, async (error, { body }) => {
+        if (error) {
+            callback('Unable to connect to facebook services!', undefined)
+        } else if(body.error) {
+            res.send('Unable to find user with that token or that token is expired.')
+        } else {
+            const data = {
+                name: body.name,
+                email: body.email,
+                password: body.id
+            }
+
+            try {
+                const isEmail = await User.findOne({email: body.email})
+                if(!isEmail){   
+                    const user = new User(data)
+
+                    await user.save()
+                    sendWelcomeEmail(user.email, user.name)
+                    const token = await user.generateAuthToken()
+                    res.status(201).send({ user, token })
+                }else{
+                    const token = await isEmail.generateAuthToken()
+                    res.status(201).send({ user: isEmail, token})
+                }
+            } catch (e) {
+                res.status(400).send(e)
+            }
+            
+        }
+    })
+})
+
+router.post('/users', async (req, res) => {
     try {
+        
+        const isEmail = await User.findOne({email: req.body.email})
+        if(isEmail){
+            throw "Email already exists."
+        }
+        const user = new User(req.body)
         await user.save()
         sendWelcomeEmail(user.email, user.name)
         const token = await user.generateAuthToken()
@@ -34,7 +114,7 @@ router.post('/users/login', async (req, res) => {
         const token = await user.generateAuthToken()
         res.send({ user, token })
     } catch (e) {
-        res.status(400).send()
+        res.status(400).send(e)
     }
 })
 

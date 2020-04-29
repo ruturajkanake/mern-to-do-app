@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom";
 import "./Register.css" ;
-import axios from 'axios'
-import Modal from 'react-modal'
+import axios from 'axios';
+import OtherLogin from "./thirdPartyLogin";
+import Modal from 'react-modal';
+
 
 class Register extends Component {
   constructor(props){
@@ -29,6 +31,7 @@ class Register extends Component {
       this.props.history.push("/tasks");
     }
   }
+
 
   componentWillMount(){
     Modal.setAppElement('body')
@@ -123,6 +126,7 @@ class Register extends Component {
                 value={this.state.name}
                 name="name" 
                 id="name"
+                required
                 onChange={this.handleChange}/>
             </div>
           </div>
@@ -134,6 +138,7 @@ class Register extends Component {
                 placeholder="john@example.com"
                 type="email" 
                 id="email"
+                required
                 value={this.state.email}
                 name="email"
                 onChange={this.handleChange}
@@ -146,6 +151,7 @@ class Register extends Component {
               <i class="fas fa-lock"></i>
               <input 
                 type="password" 
+                required
                 placeholder="************"
                 value={this.state.password}
                 name="password"
@@ -190,6 +196,7 @@ class Register extends Component {
         </Modal>
 
         <h5>Already Have Account? <Link to="/login">Login</Link></h5>
+        <OtherLogin history={this.props.history}/>
       </div>
     )
   }
